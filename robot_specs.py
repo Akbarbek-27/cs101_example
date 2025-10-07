@@ -7,15 +7,15 @@ print("=======================================")
 print("        ROBOTICS DIVISION - SPEC SHEET")
 print("=======================================\n")
 
-print("Model:           {model}")
-print("Serial Number:   {number}")
-print("Creator:         {creator}\n")
+print(f"Model:           {model}")
+print(f"Serial Number:   {number}")
+print(f"Creator:         {creator}\n")
 
-print("Full Designation: {creator}'s {model}\n")
+print(f"Full Designation: {creator}'s {model}\n")
 
 print("---------------------------------------")
-print("Primary Function: {function}")
-print("Power Source:     {source}")
+print(f"Primary Function: {function}")
+print(f"Power Source:     {source}")
 print("---------------------------------------\n")
 
 print("            STATUS: OPERATIONAL")
