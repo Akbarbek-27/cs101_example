@@ -1,0 +1,6 @@
+pi = float(3.14159)
+r = float(input("Write radius:"))
+area = float(pi * r * r)
+circumference = float(2 * pi * r)
+print(f"Circumference: {circumference:.2f}")
+print(f"Area: {area:.2f}")
