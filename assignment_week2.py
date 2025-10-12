@@ -5,10 +5,10 @@ dish3 = "Beef Stroganoff"
 price1 = 100.000
 price2 = 110.000
 price3 = 90.000
-quantity = int(input("Please enter quantity of dish(1,5): "))
 
 
 customer_name = input("Please enter your name: ")
+quantity = int(input("Please enter quantity of dish(1,5): "))
 student_id = input("Please enter student id(yes, no): ")
 order_time = int(input("Please enter order time(0,24): "))
 choose = input(f"Please choose dish: {dish1},{dish2},{dish3}:")
