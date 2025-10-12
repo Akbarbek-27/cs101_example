@@ -8,16 +8,24 @@ price3 = 90.000
 
 
 customer_name = input("Please enter your name: ")
-quantity = int(input("Please enter quantity of dish(1,5): "))
 student_id = input("Please enter student id(yes, no): ")
 order_time = int(input("Please enter order time(0,24): "))
-choose = input(f"Please choose dish: {dish1},{dish2},{dish3}:")
 
-buy1 = price1 if choose == dish1 else 0
-buy2 = price2 if choose == dish2 else 0
-buy3 = price3 if choose == dish3 else 0
+choose1 = input(f"Please choose dish(yes,no): {dish1}:")
+choose2 = input(f"Please choose dish(yes,no): {dish2}:")
+choose3 = input(f"Please choose dish(yes,no): {dish3}:")
 
-subtotal_before_discounts = int(buy1 * quantity + buy2 * quantity + buy3 * quantity)
+quantity1 = int(input(f"Please enter quantity of {dish1}(1,5): " )) if choose1 == "yes" else 0
+quantity2 = int(input(f"Please enter quantity of {dish2}(1,5): " )) if choose2 == "yes" else 0
+quantity3 = int(input(f"Please enter quantity of {dish3}(1,5):" )) if choose3 == "yes" else 0
+
+
+
+buy1 = price1 if choose1 == "yes" else 0
+buy2 = price2 if choose2 == "yes" else 0
+buy3 = price3 if choose3 == "yes" else 0
+
+subtotal_before_discounts = int(buy1 * quantity1 + buy2 * quantity2 + buy3 * quantity3)
 
 student_discount_eligibility = student_id == "yes"
 student_discount_amount = float(student_discount_eligibility * subtotal_before_discounts * 15 / 100)
