@@ -1,0 +1,67 @@
+# Problem Statement: Create a time management system that converts between different time formats. Your program should:
+
+# Define a function hours_to_minutes(hours) that converts hours to minutes
+# Define a function minutes_to_seconds(minutes) that converts minutes to seconds
+# Define a function total_seconds(hours, minutes, seconds) that calculates total seconds
+# Define a function format_time(total_minutes) that:
+# Takes total minutes as input
+# Returns a formatted string “X hours and Y minutes”
+# Example: 135 minutes returns “2 hours and 15 minutes”
+# Define a function can_fit_task(available_hours, task_hours, task_minutes) that:
+# Returns True if a task can fit within available time
+# Convert everything to minutes for comparison
+# Define a function schedule_summary(task_name, hours, minutes) that prints:
+# Task name and duration
+# Total time in minutes
+# Total time in seconds
+# No return value (action function)
+# Test your system:
+# Convert 2.5 hours to minutes
+# Calculate total seconds for 1 hour, 45 minutes, 30 seconds
+# Format 200 minutes into hours and minutes
+# Check if a 3 hour 20 minute task fits in 3.5 hours available
+# Create schedule summaries for:
+# “Study”: 2 hours 30 minutes
+# “Exercise”: 0 hours 45 minutes
+# Expected Output:
+
+# TIME CONVERTER AND SCHEDULER
+# ========================================
+# Converting 2.5 hours to minutes: 150.0 minutes
+
+# Total seconds for 1 hour, 45 minutes, 30 seconds: 6330 seconds
+
+# Formatting 200 minutes: 3 hours and 20 minutes
+
+# Can a 3 hour 20 minute task fit in 3.5 hours?
+#   Yes, the task fits!
+
+# SCHEDULE SUMMARIES:
+# ------------------------------
+# Task: Study
+#   Duration: 2 hours, 30 minutes
+#   Total Minutes: 150.0
+#   Total Seconds: 9000.0
+
+# Task: Exercise
+#   Duration: 0 hours, 45 minutes
+#   Total Minutes: 45
+#   Total Seconds: 
+print("TIME CONVERTER AND SCHEDULER")
+print("========================================\n")
+def hours_to_minutes(hours):
+    return hours * 60
+def minutes_to_seconds(minutes):
+    return minutes * 60
+def total_seconds(hours, minutes, seconds):
+    return hours_to_minutes(hours) * 60  + minutes_to_seconds(minutes) + seconds
+def format_time(total_minutes):
+    total_minutes = int(input("Total miutes:"))
+    return (f"{round(total_minutes,60)}hours and {total_minutes - round(total_minutes,60) * 60}minutes")   
+def can_fit_task(available_hours, task_hours, task_minutes):
+    return (task_hours * 60 + task_minutes - available_hours * 60) > 0
+def schedule_summary(task_name, hours, minutes):
+    print(f"Task:{task_name}")
+    print(f"Duration:{hours} hours, {minutes} minutes")
+    print(f"Total Minutes:{hours_to_minutes(hours) + minutes}")
+    print(f"Total Seconds:{(hours_to_minutes(hours) + minutes) * 60}")
