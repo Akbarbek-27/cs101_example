@@ -1,0 +1,136 @@
+# Problem Statement: Create a food delivery performance tracking system that monitors delivery metrics and calculates driver earnings. 
+# Your program should:
+
+# Record 1: “Drew”, “bulk”, 45 deliveries, “dinner”, driver_months=3, baseline_orders=800, completed_orders=1150, delivery_days=3
+# Record 2: “Ellis”, “regular”, 60 deliveries, “lunch”, driver_months=5, baseline_orders=900, completed_orders=1300, delivery_days=5
+# Record 3: “Frankie”, “express”, 30 deliveries, “morning”, driver_months=8, baseline_orders=850, completed_orders=950, delivery_days=7
+# Expected Output
+
+# FOOD DELIVERY PERFORMANCE TRACKER
+# ========================================
+# Delivery Summary for: Drew
+# ----------------------------------------
+# Order Type: bulk
+# Deliveries Completed: 45
+# Time Period: dinner
+# Delivery Revenue: $1350
+# Completion Analysis:
+#   Experience: 3 months, Baseline: 800, Completed Orders: 1150
+#   Completion Rate: 70.0%
+#   Driver Tier: Gold Tier
+# Total Earnings: $236.2
+# Delivery Days: 3
+# Route Optimization Needed: No
+
+# ========================================
+# Delivery Summary for: Ellis
+# ----------------------------------------
+# Order Type: regular
+# Deliveries Completed: 60
+# Time Period: lunch
+# Delivery Revenue: $480
+# Completion Analysis:
+#   Experience: 5 months, Baseline: 900, Completed Orders: 1300
+#   Completion Rate: 66.7%
+#   Driver Tier: Silver Tier
+# Total Earnings: $172.8
+# Delivery Days: 5
+# Route Optimization Needed: No
+
+# ========================================
+# Delivery Summary for: Frankie
+# ----------------------------------------
+# Order Type: express
+# Deliveries Completed: 30
+# Time Period: morning
+# Delivery Revenue: $240
+# Completion Analysis:
+#   Experience: 8 months, Baseline: 850, Completed Orders: 950
+#   Completion Rate: 10.5%
+#   Driver Tier: Starter Tier
+# Total Earnings: $36.0
+# Delivery Days: 7
+# Route Optimization Needed: Yes
+print("FOOD DELIVERY PERFORMANCE TRACKER")
+print(" ========================================")
+def calculate_delivery_revenue(order_type, deliveries, time_period):
+    if order_type == 'express':
+        if time_period == 'morning':
+            earn = 8
+        elif time_period == 'lunch':
+            earn = 12
+        else:
+            earn = 18
+    elif order_type == 'regular':
+        if time_period == 'morning':
+            earn = 5
+        elif time_period == 'lunch':
+            earn = 8
+        else:
+            earn = 12
+    else:
+        if time_period == 'morning':
+            earn = 15
+        elif time_period == 'lunch':
+            earn = 22
+        else:
+            earn = 30
+    return earn * deliveries
+def calculate_completion_rate(driver_months, baseline_orders, completed_orders):
+    expected_orders = 1000 + (driver_months * 100)
+    order_capacity = expected_orders - baseline_orders
+    comletion_percent = (completed_orders - baseline_orders) / order_capacity * 100
+    return comletion_percent
+def determine_driver_tier(completion_percent):
+    if completion_percent < 50:
+        print("Starter Tier")
+    elif completion_percent < 60:
+        print("Bronze Tier")
+    elif completion_percent < 70:
+        print("Silver Tier")
+    elif completion_percent < 85:
+        print("Gold")
+    else:
+        print("Elite Tier") 
+def calculate_total_earnings(revenue, deliveries, tier_bonus):
+    base_earnings = revenue * 0.05 + deliveries * 2
+    if tier_bonus == 'Starter Tier':
+        tier_bonus = 0.5
+    elif tier_bonus == 'Bronze Tier':
+        tier_bonus = 1.0
+    elif tier_bonus == 'Silver Tier':
+        tier_bonus = 1.2
+    elif tier_bonus == 'Gold':
+        tier_bonus = 1.5
+    else:
+        tier_bonus = 1.8
+    final_earnings = base_earnings * tier_bonus
+    return round(final_earnings,1)
+def needs_route_optimization(delivery_days, total_deliveries, avg_completion):
+    if delivery_days >= 6 and avg_completion < 50:
+        return True
+    elif total_deliveries < 100 and avg_completion < 60:
+        return True
+    elif delivery_days >= 4 and avg_completion < 40:
+        return True
+    else:
+        return False
+def generate_delivery_summary(driver_name, order_type, deliveries, time_period, driver_months, baseline_orders, completed_orders, delivery_days):
+    print(f"Delivery Summary for: {driver_name}")
+    print("----------------------------------------")
+    print(f"Order Type:{order_type}")
+    print(f"Deliveries Completed:{deliveries}")
+    print(f"Time Period:{time_period}")
+    print(f"Delivery Revenue:{calculate_delivery_revenue(order_type, deliveries, time_period)}")
+    print(f"Completion Analysis:")
+    print(f"Experience:{driver_months}month(s), Baseline:{baseline_orders}, Completed Orders:{completed_orders}")
+    completion_percent = calculate_completion_rate(driver_months, baseline_orders, completed_orders)
+    print(f"Completion Rate:{calculate_completion_rate(driver_months, baseline_orders, completed_orders)}")
+    print(f"Driver Tier:{determine_driver_tier(completion_percent)}")
+    tier_bonus = determine_driver_tier(completion_percent)
+    revenue = calculate_delivery_revenue(order_type, deliveries, time_period)
+    print(f"Total Earnings:{calculate_total_earnings(revenue, deliveries, tier_bonus)}")
+    print(f"Delivery Days:{delivery_days}")
+    total_deliveries = 9
+    avg_completion = 8
+    print(f"Route Optimization Needed:{needs_route_optimization(delivery_days, total_deliveries, avg_completion)}")
